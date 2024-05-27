@@ -65,7 +65,7 @@
     <Tictactoe @closeGame="toggleGameOpen"></Tictactoe>
   </div>
   <div v-if="gameOpen=='Arkanoid'">
-    <Arkanoid @closeGame="toggleGameOpen"></Arkanoid>
+    <Arkanoid :device="device" @closeGame="toggleGameOpen"></Arkanoid>
   </div>
   <div v-if="gameOpen=='Snake'">
     <Snake :device="device" @closeGame="toggleGameOpen"></Snake>
