@@ -11,9 +11,9 @@
                     @touchcancel="stopTouchHold">
                     ←</div>
                 <div class="w-1/4 rounded aspect-square bg-zinc-700 border-white border-2 border-solid my-1 mx-5 content-center text-3xl active:bg-zinc-500" 
-                @touchstart="moveByButton('right')" 
-                @touchend="stopTouchHold" 
-                @touchcancel="stopTouchHold">
+                    @touchstart="moveByButton('right')" 
+                    @touchend="stopTouchHold" 
+                    @touchcancel="stopTouchHold">
                 →</div>
             </div>
         </div> 
@@ -83,6 +83,12 @@ export default {
                     }
                 }
                 console.log("bricks", bricks)
+                //ball
+                let ballDiameter = unitSizeY
+                let ballX = canvaSize / 2
+                let ballY = canvaSize - unitSizeY - ballDiameter/2 -1
+                let ballSpeedX = gameSpeed * 0.8 //ball root data
+                let ballSpeedY = gameSpeed * 0.8 //ball root data
 
             p5.setup = () => {
 
@@ -96,10 +102,13 @@ export default {
 
                 //move player (data)
                 triggerMove()
-                //move ball (data)  -bounce function with vetor
 
-                //check brick broken (add point)
+                //move ball (data)  
+                ballX += ballSpeedX
+                ballY += ballSpeedY
 
+                //check brick broken (add point) and collisions
+                checkBallCollision()
 
                 //draw
                     //bricks
@@ -109,14 +118,64 @@ export default {
                     //player
                     p5.rect(playerXPos, canvaSize-unitSizeY, playerXSize, unitSizeY)    //rect(x, y, w, h,)
                     //ball
-
+                    p5.circle(ballX, ballY, ballDiameter)
                 
                
             }
 
             //--------------------
 
-            function triggerMove(direction) {
+            const checkBallCollision = () => { //TODO ball collision
+
+                //canva bounds
+                if(ballX >= canvaSize-ballDiameter/2 || ballX <= 0+ballDiameter/2){
+                    ballSpeedX = ballSpeedX * (-1)
+                }
+                if(ballY <= 0+ballDiameter/2){
+                    ballSpeedY = ballSpeedY * (-1)
+                }
+                if(ballY >= canvaSize-ballDiameter/2){
+                    endGame()
+                }
+
+                //player
+                if(ballX >= playerXPos-ballDiameter/2 && ballX <= playerXPos+playerXSize+ballDiameter/2){ //at player X
+                    if(ballY >= canvaSize-unitSizeY-ballDiameter/2){   // and at player Y
+                        ballSpeedY = ballSpeedY * (-1)
+                    }
+                }
+                else if(ballY >= canvaSize-unitSizeY-ballDiameter/2) // not at player
+
+                if(ballY >= canvaSize-unitSizeY-ballDiameter/2){    // ball at player Y
+                    if(ballX >= playerXPos-ballDiameter/2 && ballX <= playerXPos+playerXSize+ballDiameter/2){   //at player X
+                        ballSpeedY = ballSpeedY * (-1)
+                    }
+                    else{
+                        endGame()
+                    }
+                }
+
+                //bricks
+                bricks.forEach((brick, index) => {
+                    //side collision
+                    if(ballY >= brick.y && ballY <= brick.y + unitSizeY){
+                        if(ballX >= brick.x+ballDiameter/2 && ballX <= brick.x+bricksize+ballDiameter/2){
+                            ballSpeedX = ballSpeedX * (-1)
+                            bricks.splice(index, 1)
+                            score.value++
+                        }
+                    }
+                    //vertical collisions
+                    if(ballX >= brick.x-ballDiameter/2 && ballX <= brick.x+bricksize+ballDiameter/2){
+                        if(ballY >= brick.y-ballDiameter/2 && ballY <= brick.y+unitSizeY+ballDiameter/2){
+                            ballSpeedY = ballSpeedY * (-1)
+                            bricks.splice(index, 1)
+                            score.value++
+                        }
+                    }
+                })
+            }
+            const triggerMove = (direction) => {
 
                 //KEYBOARD
                 //right
