@@ -58,25 +58,37 @@ export default {
         const sketch = (p5) => {
 
             //world
-            let unitSize
-            let gameSpeed
+            let gameSpeed = 5
+            let unitSizeY = canvaSize/20
 
             //game actors
                 //player
-                let playerXSize = canvaSize/5
+                let playerXSize = canvaSize/5 //player root data
                 let playerXPos = canvaSize/2-playerXSize/2 //left corners 
-            
+                //bricks
+                let bricksInARow = 5 //bricks root data
+                let bricksRows = 8  //bricks root data
+                let bricksize = canvaSize/bricksInARow
+                let bricks = []
+                for(let j=0; j< bricksRows; j++){
+                    for(let i=0; i< bricksInARow; i++){
+                        let brickUpperLeftCornerPos_x = (canvaSize/bricksInARow) * i
+                        let brickUpperLeftCornerPos_y = unitSizeY * j
+                        let brickId = "" + j+ i
+                        bricks.push({
+                            x: brickUpperLeftCornerPos_x,
+                            y: brickUpperLeftCornerPos_y,
+                            id: brickId
+                        })
+                    }
+                }
+                console.log("bricks", bricks)
 
             p5.setup = () => {
 
                 //canva 
                 console.log("canva p5 started")
                 p5.createCanvas(canvaSize, canvaSize)
-
-                //world
-                const cellsNumberInRow = 20
-                unitSize = p5.width/cellsNumberInRow  //unit w = h = 15px     // 20 units
-                gameSpeed = 5
 
             }  
             p5.draw = () => {
@@ -91,9 +103,11 @@ export default {
 
                 //draw
                     //bricks
-
+                    bricks.forEach((brick) => {
+                        p5.rect(brick.x, brick.y, bricksize, unitSizeY) 
+                    })
                     //player
-                    p5.rect(playerXPos, canvaSize-unitSize, playerXSize, unitSize)    //rect(x, y, w, h,)
+                    p5.rect(playerXPos, canvaSize-unitSizeY, playerXSize, unitSizeY)    //rect(x, y, w, h,)
                     //ball
 
                 
