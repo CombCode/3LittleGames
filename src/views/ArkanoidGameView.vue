@@ -41,7 +41,7 @@ export default {
             if(device === "mobile")
                 return 300
             else
-                return 600
+                return 500
         } 
 
         //outside game service data
@@ -125,7 +125,7 @@ export default {
 
             //--------------------
 
-            const checkBallCollision = () => { //TODO ball collision
+            const checkBallCollision = () => {
 
                 //canva bounds
                 if(ballX >= canvaSize-ballDiameter/2 || ballX <= 0+ballDiameter/2){
@@ -139,13 +139,6 @@ export default {
                 }
 
                 //player
-                if(ballX >= playerXPos-ballDiameter/2 && ballX <= playerXPos+playerXSize+ballDiameter/2){ //at player X
-                    if(ballY >= canvaSize-unitSizeY-ballDiameter/2){   // and at player Y
-                        ballSpeedY = ballSpeedY * (-1)
-                    }
-                }
-                else if(ballY >= canvaSize-unitSizeY-ballDiameter/2) // not at player
-
                 if(ballY >= canvaSize-unitSizeY-ballDiameter/2){    // ball at player Y
                     if(ballX >= playerXPos-ballDiameter/2 && ballX <= playerXPos+playerXSize+ballDiameter/2){   //at player X
                         ballSpeedY = ballSpeedY * (-1)

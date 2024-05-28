@@ -44,7 +44,7 @@ export default {
             if(device === "mobile")
                 return 300
             else
-                return 600
+                return 500
         } 
 
         let canvaSize = setCanvaSize()

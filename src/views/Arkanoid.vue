@@ -5,7 +5,7 @@
         </div>
         <div id="game" class="flex flex-row justify-center">
             <ArkanoidGameView v-if="!gameEndedToggle" @gameEnded="handle_gameEnded" :device="getDevice()"></ArkanoidGameView>
-            <div id="gameScreenPlaceholder" v-if="gameEndedToggle" class="w-72 h-72 border-white border-2 border-solid bg-zinc-900 min-[1400px]:w-[600px] min-[1400px]:h-[600px]"></div>
+            <div id="gameScreenPlaceholder" v-if="gameEndedToggle" class="w-72 h-72 border-white border-2 border-solid bg-zinc-900 min-[1400px]:w-[400px] min-[1400px]:h-[400px]"></div>
         </div>
         <div v-if="gameEndedToggle" class="flex flex-col justify-center">
             <p>Score: {{score}}</p>
