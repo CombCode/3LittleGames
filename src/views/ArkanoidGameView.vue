@@ -197,7 +197,7 @@ export default {
                         //stop
                     }
                     else{
-                        playerXPos += gameSpeed  
+                        playerXPos += (gameSpeed/5)
                     }
                 }
                 else if(direction == "left"){
@@ -205,7 +205,7 @@ export default {
                         //stop
                     }
                     else{
-                        playerXPos -= gameSpeed  
+                        playerXPos -= (gameSpeed/5) 
                     }
                 }
 
