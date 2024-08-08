@@ -40,4 +40,10 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.unselectable {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
 </style>

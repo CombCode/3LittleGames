@@ -5,12 +5,12 @@
         </div>
         <div class="flex flex-col justify-center my-10" v-if="device === 'mobile'">
             <div class="flex flex-row justify-center content-center">
-                <div class="w-1/4 rounded aspect-square bg-zinc-700 border-white border-2 border-solid my-1 mx-5 content-center text-3xl active:bg-zinc-500" 
+                <div class=" unselectable w-1/4 rounded aspect-square bg-zinc-700 border-white border-2 border-solid my-1 mx-5 content-center text-3xl active:bg-zinc-500" 
                     @touchstart="moveByButton('left')" 
                     @touchend="stopTouchHold" 
                     @touchcancel="stopTouchHold">
                     ←</div>
-                <div class="w-1/4 rounded aspect-square bg-zinc-700 border-white border-2 border-solid my-1 mx-5 content-center text-3xl active:bg-zinc-500" 
+                <div class=" unselectable w-1/4 rounded aspect-square bg-zinc-700 border-white border-2 border-solid my-1 mx-5 content-center text-3xl active:bg-zinc-500" 
                     @touchstart="moveByButton('right')" 
                     @touchend="stopTouchHold" 
                     @touchcancel="stopTouchHold">
