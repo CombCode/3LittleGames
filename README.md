@@ -1,19 +1,13 @@
 # 3games
 
-## Project setup
+## Direct link
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+https://sprightly-alpaca-1c7299.netlify.app
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Overview
+Tic-Tac-Toe, Arkanoid and Snake with modern look.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
